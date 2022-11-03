@@ -7,7 +7,7 @@ public class Muslim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(DataManager.Instance.hp);
+        Debug.Log(DataManager.Instance.hp);
     }
 
     // Update is called once per frame
