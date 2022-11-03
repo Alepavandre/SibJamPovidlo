@@ -7,19 +7,20 @@ public class ShakeCamera : MonoBehaviour
     [SerializeField] private float durationShake;
     [SerializeField] private float startPosRange;
     [SerializeField] private float endPosRange;
+    [SerializeField] private new Camera camera;
     
     
     
     private float cameraPosX;
     private float cameraPosY;
     
-    private Camera _camera;
+    //private Camera _camera;
     private Vector3 _originalPosition;
 
     void Start()
     {
-        _camera = Camera.main;
-        _originalPosition = _camera.transform.position;
+        //_camera = Camera.main;
+        _originalPosition = camera.transform.position;
     }
 
     public void Shake()
@@ -35,9 +36,9 @@ public class ShakeCamera : MonoBehaviour
         {
             cameraPosX = Random.Range(startPosRange, endPosRange);
             cameraPosY = Random.Range(startPosRange, endPosRange);
-            _camera.transform.position = new Vector3(cameraPosX, cameraPosY, _originalPosition.z); 
+            camera.transform.position = new Vector3(cameraPosX, cameraPosY, _originalPosition.z); 
             yield return new WaitForSeconds(durationAfterRestart);
         }
-        _camera.transform.position = _originalPosition;
+        camera.transform.position = _originalPosition;
     }
 }

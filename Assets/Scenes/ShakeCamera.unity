@@ -163,13 +163,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 175065540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7849eecdae5627e45a0faae192d8f8c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 40ad2b0568629ce41aef73d2c344fa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durationAfterRestart: 0.075
-  durationShake: 5
-  startPosRange: -0.3
-  endPosRange: 0.3
+  durationAfterRestart: 0.025
+  durationShake: 2
+  startPosRange: 3
+  endPosRange: -3
 --- !u!1 &219356102
 GameObject:
   m_ObjectHideFlags: 0
