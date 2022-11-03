@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationAfterRestart: 0.075
   durationShake: 5
-  cameraPosX: 0.8
-  cameraPosY: 0.8
+  startPosRange: -0.3
+  endPosRange: 0.3
 --- !u!1 &219356102
 GameObject:
   m_ObjectHideFlags: 0
