@@ -17,14 +17,24 @@ public class ItemSystem : MonoBehaviour
 
     public List<ItemPickUp> items = new List<ItemPickUp>();
     public GameObject player;
+
     private float _distance = 100;
+
     [NonSerialized] public bool isEntered = false;
+    [NonSerialized] public bool isPicked = false;
 
     private ItemPickUp minItem;
 
     private void Update()
     {
         if (!isEntered) return;
+
+        if (isPicked)
+        {
+            minItem.transform.position = player.transform.position;
+            if (Input.GetKeyDown(KeyCode.E)) isPicked = false;
+            return;
+        }
 
         if (items.Count == 0)
         {
@@ -37,10 +47,11 @@ public class ItemSystem : MonoBehaviour
         {
             minItem = items[0];
             minItem.ChangeSpriteColor();
-            
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 minItem.TriggeredOneItem();
+                isPicked = true;
             }
             return;
         }
@@ -48,7 +59,6 @@ public class ItemSystem : MonoBehaviour
         if (items.Count > 1)
         {
             _distance = 100;
-
             foreach (var item in items)
             {
                 float distance = Vector3.Distance(player.transform.position, item.gameObject.transform.position);
@@ -56,17 +66,22 @@ public class ItemSystem : MonoBehaviour
 
                 if (_distance > distance)
                 {
-                    _distance = distance;
+                    if (minItem == null)
+                    {
+                        minItem = item;
+                    }
 
                     minItem.ChangeSpriteColor(true); //вернуть обратно цвет у прошлого объекта
                     minItem = item;
                     minItem.ChangeSpriteColor(); // поменять на активынй цвет у объекта который теперь ближе
+                    _distance = distance;
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 minItem.TriggeredManyItems(minItem);
+                isPicked = true;
             }
         }
     }
