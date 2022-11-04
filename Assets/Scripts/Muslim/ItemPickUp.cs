@@ -55,6 +55,11 @@ public class ItemPickUp : MonoBehaviour
         ItemSystem.ItemInstance.isEntered = false;
     }
 
+    public void DestroyItem()
+    {
+        Destroy(this);
+    }
+
     public void ChangeSpriteColor(bool backLoadSprite = false)
     {
         if (backLoadSprite)

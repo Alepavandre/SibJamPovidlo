@@ -23,7 +23,7 @@ public class ItemSystem : MonoBehaviour
     [NonSerialized] public bool isEntered = false;
     [NonSerialized] public bool isPicked = false;
 
-    private ItemPickUp minItem;
+    [NonSerialized] public ItemPickUp minItem;
 
     private void Update()
     {
@@ -32,7 +32,11 @@ public class ItemSystem : MonoBehaviour
         if (isPicked)
         {
             minItem.transform.position = player.transform.position;
-            if (Input.GetKeyDown(KeyCode.E)) isPicked = false;
+            if (Input.GetMouseButtonDown(0)) 
+            {
+                isPicked = false;
+            }
+            
             return;
         }
 
