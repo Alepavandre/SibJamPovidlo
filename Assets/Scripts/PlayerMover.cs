@@ -10,10 +10,11 @@ public class PlayerMover : MonoBehaviour
     private float verticalBounds = 20f;
     [SerializeField]
     private float horizontalBounds = 38f;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -21,34 +22,34 @@ public class PlayerMover : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.up * speed;
-            if (transform.position.y > verticalBounds)
+            rb.position += Vector2.up * speed;
+            if (rb.position.y > verticalBounds)
             {
-                transform.position = new Vector3(transform.position.x, verticalBounds);
+                rb.position = new Vector2(rb.position.x, verticalBounds);
             }
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += Vector3.down * speed;
-            if (transform.position.y < -verticalBounds)
+            rb.position += Vector2.down * speed;
+            if (rb.position.y < -verticalBounds)
             {
-                transform.position = new Vector3(transform.position.x, -verticalBounds);
+                rb.position = new Vector2(rb.position.x, -verticalBounds);
             }
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += Vector3.left * speed;
-            if (transform.position.x < -horizontalBounds)
+            rb.position += Vector2.left * speed;
+            if (rb.position.x < -horizontalBounds)
             {
-                transform.position = new Vector3(-horizontalBounds, transform.position.y);
+                rb.position = new Vector2(-horizontalBounds, rb.position.y);
             }
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += Vector3.right * speed;
-            if (transform.position.x > horizontalBounds)
+            rb.position += Vector2.right * speed;
+            if (rb.position.x > horizontalBounds)
             {
-                transform.position = new Vector3(horizontalBounds, transform.position.y);
+                rb.position = new Vector3(horizontalBounds, rb.position.y);
             }
         }
     }
