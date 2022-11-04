@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
@@ -8,8 +6,8 @@ public class ItemPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ItemSystem.instance.isEntered = true;
-            ItemSystem.instance.items.Add(this);
+            ItemSystem.ItemInstance.isEntered = true;
+            ItemSystem.ItemInstance.items.Add(this);
         }
     }
 
@@ -17,7 +15,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ItemSystem.instance.isEntered = true;
+            ItemSystem.ItemInstance.isEntered = true;
         }
     }
 
@@ -25,10 +23,10 @@ public class ItemPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ItemSystem.instance.isEntered = false;
-            if (ItemSystem.instance.items.Count > 0)
+            ItemSystem.ItemInstance.isEntered = false;
+            if (ItemSystem.ItemInstance.items.Count > 0)
             {
-                ItemSystem.instance.items.Remove(this);
+                ItemSystem.ItemInstance.items.Remove(this);
             }
         }
     }
@@ -42,7 +40,7 @@ public class ItemPickUp : MonoBehaviour
     public void TriggeredManyItems(ItemPickUp item)
     {
         Debug.Log($"PickedUp one of two: {item}");
-        ItemSystem.instance.isEntered = false;
+        ItemSystem.ItemInstance.isEntered = false;
         Destroy(gameObject);
     }
 }

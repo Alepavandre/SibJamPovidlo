@@ -771,7 +771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534507032}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.47, y: 11.24, z: 0}
+  m_LocalPosition: {x: -15.58, y: 4.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 730466972}
@@ -1447,8 +1447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   player: {fileID: 27535408}
-  _distance: -1
-  isEntered: 0
 --- !u!1 &1197232185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283623800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.46, y: 10.56, z: 0}
+  m_LocalPosition: {x: -11.49, y: 4.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 730466972}
