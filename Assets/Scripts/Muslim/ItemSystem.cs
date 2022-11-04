@@ -35,9 +35,11 @@ public class ItemSystem : MonoBehaviour
 
         if (items.Count == 1)
         {
+            minItem = items[0];
+            minItem.ChangeSpriteColor();
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
-                minItem = items[0];
                 minItem.TriggeredOneItem();
             }
             return;
@@ -55,7 +57,10 @@ public class ItemSystem : MonoBehaviour
                 if (_distance > distance)
                 {
                     _distance = distance;
+
+                    minItem.ChangeSpriteColor(true); //вернуть обратно цвет у прошлого объекта
                     minItem = item;
+                    minItem.ChangeSpriteColor(); // поменять на активынй цвет у объекта который теперь ближе
                 }
             }
 
