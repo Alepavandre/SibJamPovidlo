@@ -19,6 +19,7 @@ public class ItemSystem : MonoBehaviour
     public GameObject player;
 
     private float _distance = 100;
+    public float step = 2f;
 
     [NonSerialized] public bool isEntered = false;
     [NonSerialized] public bool isPicked = false;
