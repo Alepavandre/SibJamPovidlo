@@ -358,6 +358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 322424533}
     m_Modifications:
+    - target: {fileID: 3971565529964318386, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971565530718404413, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
       propertyPath: m_Name
       value: Furniture
@@ -410,13 +414,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3971565530976315094, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971565531190955379, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
---- !u!4 &268154726 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3971565530718404414, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
-  m_PrefabInstance: {fileID: 268154725}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &322424532
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +457,7 @@ Transform:
   - {fileID: 1915414324}
   - {fileID: 27535409}
   - {fileID: 490232835}
-  - {fileID: 268154726}
+  - {fileID: 3971565530830882907}
   - {fileID: 635536164}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -577,7 +584,7 @@ GameObject:
   - component: {fileID: 394978003}
   m_Layer: 0
   m_Name: Down
-  m_TagString: Walls
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,7 +801,7 @@ GameObject:
   - component: {fileID: 500765087}
   m_Layer: 0
   m_Name: Up
-  m_TagString: Walls
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1849,7 +1856,7 @@ GameObject:
   - component: {fileID: 1357557145}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Walls
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2176,7 +2183,7 @@ GameObject:
   - component: {fileID: 1798578674}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Walls
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2412,7 +2419,7 @@ GameObject:
   - component: {fileID: 1906797381}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Walls
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2567,3 +2574,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948747472}
   m_CullTransparentMesh: 1
+--- !u!4 &3971565530830882907 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3971565530718404414, guid: 55f3d3f2e6f3e8f4daf6d9895c4cd8fa, type: 3}
+  m_PrefabInstance: {fileID: 268154725}
+  m_PrefabAsset: {fileID: 0}

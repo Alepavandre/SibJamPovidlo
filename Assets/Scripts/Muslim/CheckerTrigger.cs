@@ -1,26 +1,30 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckerTrigger : MonoBehaviour
 {
     public bool checkFurnit = false;
     public bool checkWalls = false;
-    public static float step = 0.5f;
+    public static float step = 2f;
 
-    /*private void OnTriggerEnter2D(Collider2D other)
+    private void Awake()
+    {
+        checkFurnit = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Walls"))
         {
             checkWalls = true;
+            Debug.Log($"Entered walls {checkWalls}");
         }
 
         if (other.CompareTag("Furnit"))
         {
             checkFurnit = true;
+            Debug.Log($"Entered furnit {checkFurnit}");
         }
-    }*/
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -33,7 +37,7 @@ public class CheckerTrigger : MonoBehaviour
         if (other.CompareTag("Furnit"))
         {
             checkFurnit = true;
-            Debug.Log($"Furnit walls {checkFurnit}");
+            Debug.Log($"Furnit {checkFurnit}");
         }
     }
 
@@ -48,7 +52,7 @@ public class CheckerTrigger : MonoBehaviour
         if (other.CompareTag("Furnit"))
         {
             checkFurnit = false;
-            Debug.Log($"FurnitExit walls {checkFurnit}");
+            Debug.Log($"FurnitExit {checkFurnit}");
         }
     }
 }

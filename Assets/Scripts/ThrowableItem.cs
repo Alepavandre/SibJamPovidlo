@@ -44,6 +44,7 @@ public class ThrowableItem : MonoBehaviour
             yield return new WaitForSeconds(.01f);
             rb.position = Vector2.MoveTowards(rb.position, endPos, speedItem);
         }
+
         EndMission();
     }
 
@@ -56,28 +57,52 @@ public class ThrowableItem : MonoBehaviour
         GameObject gm = Instantiate(checker, new Vector3(endPos.x, endPos.y, 0), Quaternion.identity);
         Rigidbody2D rbGm = gm.GetComponent<Rigidbody2D>();
 
-        CheckerTrigger checkerGM = gm.GetComponent<CheckerTrigger>();
+
+        RaycastHit2D hit1 = Physics2D.Raycast(startPos, clickPos - startPos, distance, 0);
+        Debug.Log($"endpos {endPos}");
+        //Debug.Log($"Wall {hit1.collider.gameObject.name}");
+
+        if (hit1.collider != null)
+        {
+            Debug.Log($"Wall {hit1.collider.gameObject.name}");
+            if (hit1.collider.CompareTag("Walls"))
+            {
+                Debug.Log($"Wall {rbGm.position}");
+                return hit1.point;
+            }
+        }
 
         Debug.Log($"1{rbGm.position}");
-        int n = 5;
+        float deviation = 30f;
 
-        while (n > 0)
+        float dis = distance + deviation;
+
+        while (dis > 0)
         {
-            Debug.Log($"2{rbGm.position}");
-            if (checkerGM.checkWalls)
+                
+            RaycastHit2D hit = Physics2D.Raycast(rbGm.position, Vector2.zero, 0.1f);
+
+            if (hit.collider == null)
             {
-                rbGm.position = Vector2.MoveTowards(rbGm.position, Vector2.zero, CheckerTrigger.step);
+                Debug.Log($"null {rbGm.position}");
+                //Destroy(gm);
+                return rbGm.position;
+            }
+            else if (hit.collider.CompareTag("Walls") || hit.collider.CompareTag("Furnit"))
+            {
+                rbGm.position = Vector2.MoveTowards(rbGm.position, Vector2.zero, ItemSystem.ItemInstance.step);
                 Debug.Log($"3{rbGm.position}");
             }
-            else if (checkerGM.checkFurnit)
+            /*else if (hit.collider.CompareTag("Furnit"))
             {
                 rbGm.position = Vector2.MoveTowards(rbGm.position, endPos, CheckerTrigger.step);
-                Debug.Log($"3{rbGm.position}");
-            }
-            n--;
+                Debug.Log($"4{rbGm.position}");
+            }*/
+            
+            dis -= Time.deltaTime;
         }
         //Destroy(gm);
-
+        if (dis + deviation > 0) distance += deviation; 
         return rbGm.position;
     }
 
