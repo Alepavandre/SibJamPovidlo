@@ -11,14 +11,28 @@ public class PlayerMover : MonoBehaviour
     [SerializeField]
     private float horizontalBounds = 38f;
     private Rigidbody2D rb;
+
+    public GameObject throwable;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButton(1) && ItemSystem.ItemInstance.isPicked)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Throw();
+            }
+        }
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -52,5 +66,18 @@ public class PlayerMover : MonoBehaviour
                 rb.position = new Vector3(horizontalBounds, rb.position.y);
             }
         }
+
+        /*if (Input.GetMouseButton(1) && ItemSystem.ItemInstance.isPicked)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Throw();
+            }
+        }*/
+    }
+
+    private void Throw()
+    {
+        Instantiate(throwable, transform.position, Quaternion.identity);
     }
 }

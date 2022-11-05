@@ -31,10 +31,12 @@ public class ItemSystem : MonoBehaviour
 
         if (isPicked)
         {
-            minItem.transform.position = player.transform.position;
+            //minItem.transform.position = player.transform.position;
+            //minItem.transform.SetParent(player.transform);
+
             if (Input.GetMouseButtonDown(0)) 
             {
-                isPicked = false;
+                //isPicked = false;
             }
             
             return;
@@ -42,7 +44,7 @@ public class ItemSystem : MonoBehaviour
 
         if (items.Count == 0)
         {
-            Debug.Log("List empty");
+            //Debug.Log("List empty");
             isEntered = false;
             return;
         }
@@ -50,12 +52,16 @@ public class ItemSystem : MonoBehaviour
         if (items.Count == 1)
         {
             minItem = items[0];
+            if (minItem == null)
+            {
+                return;
+            }
             minItem.ChangeSpriteColor();
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 minItem.TriggeredOneItem();
-                isPicked = true;
+                SetPicked();
             }
             return;
         }
@@ -65,8 +71,15 @@ public class ItemSystem : MonoBehaviour
             _distance = 100;
             foreach (var item in items)
             {
+                if (item == null)
+                {
+                    items.Remove(item);
+                    Debug.Log("Item is missing!");
+                    return;
+                }
+
                 float distance = Vector3.Distance(player.transform.position, item.gameObject.transform.position);
-                Mathf.Abs(distance);
+                distance = Mathf.Abs(distance);
 
                 if (_distance > distance)
                 {
@@ -85,8 +98,25 @@ public class ItemSystem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 minItem.TriggeredManyItems(minItem);
-                isPicked = true;
+                SetPicked();
             }
         }
+    }
+
+    private void SetPicked()
+    {
+        if (minItem.isInfinity)
+        {
+            //ItemPickUp newItem = Instantiate(minItem, player.transform.position, Quaternion.identity, player.transform);
+            //newItem.isInfinity = false;
+            minItem = Instantiate(minItem, player.transform.position, Quaternion.identity, player.transform);
+            minItem.isInfinity = false;
+        }
+        else
+        {
+            minItem.transform.position = player.transform.position;
+            minItem.transform.SetParent(player.transform);
+        }
+        isPicked = true;
     }
 }

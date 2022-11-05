@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
 {
-    private Color spriteOriginalColor;
+    private Color spriteOriginalColor = Color.white;
     private Color spriteChangeColor = Color.black;
+
+    public int index = 0;
+    public bool isInfinity = false;
 
 
     private void Start()
     {
-        spriteOriginalColor = gameObject.GetComponent<SpriteRenderer>().color;
+        //spriteOriginalColor = gameObject.GetComponent<SpriteRenderer>().color;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,21 +46,22 @@ public class ItemPickUp : MonoBehaviour
 
     public void TriggeredOneItem()
     {
-        Debug.Log($"PickedUp onece: {this}");
+        //Debug.Log($"PickedUp onece: {this}");
         ChangeSpriteColor(true);
         ItemSystem.ItemInstance.isEntered = false;
     }
 
     public void TriggeredManyItems(ItemPickUp item)
     {
-        Debug.Log($"PickedUp one of two: {item}");
+        //Debug.Log($"PickedUp one of two: {item}");
         ChangeSpriteColor(true);
         ItemSystem.ItemInstance.isEntered = false;
     }
 
     public void DestroyItem()
     {
-        Destroy(this);
+        //Destroy(this);
+        Destroy(gameObject);
     }
 
     public void ChangeSpriteColor(bool backLoadSprite = false)
