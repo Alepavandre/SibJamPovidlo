@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3971565529334080322}
   m_Layer: 0
   m_Name: TableChairs
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 3971565529673662358}
   m_Layer: 0
   m_Name: TableChairs (16)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3971565529801111710}
   m_Layer: 0
   m_Name: TableChairs (1)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 3971565529801688379}
   m_Layer: 0
   m_Name: TableChairs (8)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 3971565529964318396}
   m_Layer: 0
   m_Name: TableChairs (12)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 3971565529988034896}
   m_Layer: 0
   m_Name: TableChairs (7)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 3971565530133995328}
   m_Layer: 0
   m_Name: TableChairs (3)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 3971565530279556007}
   m_Layer: 0
   m_Name: TableChairs (6)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 3971565530406922248}
   m_Layer: 0
   m_Name: TableChairs (10)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 3971565530429417006}
   m_Layer: 0
   m_Name: TableChairs (9)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 3971565530660950344}
   m_Layer: 0
   m_Name: TableChairs (4)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 3971565530724959347}
   m_Layer: 0
   m_Name: TableChairs (2)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 3971565530956549346}
   m_Layer: 0
   m_Name: TableChairs (11)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 3971565530976315088}
   m_Layer: 0
   m_Name: TableChairs (14)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 3971565531081749664}
   m_Layer: 0
   m_Name: TableChairs (17)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 3971565531190955389}
   m_Layer: 0
   m_Name: TableChairs (13)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 3971565531315735395}
   m_Layer: 0
   m_Name: TableChairs (5)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 3971565531343572140}
   m_Layer: 0
   m_Name: TableChairs (15)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 3971565531368125216}
   m_Layer: 0
   m_Name: TableChairs (18)
-  m_TagString: Untagged
+  m_TagString: Furnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

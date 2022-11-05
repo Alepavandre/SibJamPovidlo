@@ -9,6 +9,7 @@ public class ThrowableItem : MonoBehaviour
     [SerializeField]
     private float speedItem = 0.5f;
     private ItemPickUp item;
+    [SerializeField] private GameObject checker;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -34,10 +35,10 @@ public class ThrowableItem : MonoBehaviour
 
     IEnumerator Throw()
     {
-        Vector2 startPos = rb.position;
-        Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 endPos = startPos + (clickPos - startPos).normalized * distance;
-
+        //Vector2 startPos = rb.position;
+        //Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 endPos = startPos + (clickPos - startPos).normalized * distance;
+        Vector2 endPos = EndPoseDis();
         for (float i = 0f; i < distance; i += speedItem)
         {
             yield return new WaitForSeconds(.01f);
@@ -46,11 +47,45 @@ public class ThrowableItem : MonoBehaviour
         EndMission();
     }
 
+    private Vector2 EndPoseDis()
+    {
+        Vector2 startPos = rb.position;
+        Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 endPos = startPos + (clickPos - startPos).normalized * distance;
+
+        GameObject gm = Instantiate(checker, new Vector3(endPos.x, endPos.y, 0), Quaternion.identity);
+        Rigidbody2D rbGm = gm.GetComponent<Rigidbody2D>();
+
+        CheckerTrigger checkerGM = gm.GetComponent<CheckerTrigger>();
+
+        Debug.Log($"1{rbGm.position}");
+        int n = 5;
+
+        while (n > 0)
+        {
+            Debug.Log($"2{rbGm.position}");
+            if (checkerGM.checkWalls)
+            {
+                rbGm.position = Vector2.MoveTowards(rbGm.position, Vector2.zero, CheckerTrigger.step);
+                Debug.Log($"3{rbGm.position}");
+            }
+            else if (checkerGM.checkFurnit)
+            {
+                rbGm.position = Vector2.MoveTowards(rbGm.position, endPos, CheckerTrigger.step);
+                Debug.Log($"3{rbGm.position}");
+            }
+            n--;
+        }
+        //Destroy(gm);
+
+        return rbGm.position;
+    }
+
     private void EndMission()
     {
         if (item != null)
         {
-            item.enabled = true;
+            //item.enabled = true;
         }
         transform.DetachChildren();
         Destroy(gameObject);
@@ -73,10 +108,5 @@ public class ThrowableItem : MonoBehaviour
         }
 
         //Debug.Log(collision.name);
-        if (collision.CompareTag("Walls"))
-        {
-            StopCoroutine(nameof(Throw));
-            EndMission();
-        }
     }
 }
