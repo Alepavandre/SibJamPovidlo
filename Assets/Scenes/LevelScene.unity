@@ -189,6 +189,7 @@ MonoBehaviour:
   speed: 0.365
   verticalBounds: 20
   horizontalBounds: 38
+  rotationSpeed: 100
   throwable: {fileID: 3523204574920934548, guid: dfc51ea284e10f94d88b7f89d7dec4ee, type: 3}
 --- !u!50 &27535412
 Rigidbody2D:

@@ -42,10 +42,11 @@ public class PlayerMover : MonoBehaviour
         float deltaY = Input.GetAxis("Vertical");
 
         Vector2 moveDirection = new Vector2(deltaX, deltaY);
-        float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+        //float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
         moveDirection.Normalize();
 
-        transform.Translate(moveDirection * speed * inputMagnitude * Time.fixedDeltaTime, Space.World);
+        //transform.Translate(moveDirection * speed * inputMagnitude * Time.fixedDeltaTime, Space.World);
+        //rb.MovePosition(rb.position + inputMagnitude * speed * Time.fixedDeltaTime * moveDirection);
         
         if (moveDirection != Vector2.zero)
         {
@@ -53,10 +54,9 @@ public class PlayerMover : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        /*if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             rb.position += Vector2.up * speed;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
             if (rb.position.y > verticalBounds)
             {
                 rb.position = new Vector2(rb.position.x, verticalBounds);
@@ -66,7 +66,6 @@ public class PlayerMover : MonoBehaviour
         {
 
             rb.position += Vector2.down * speed;
-            transform.rotation = Quaternion.Euler(0, 0, 180);
             if (rb.position.y < -verticalBounds)
             {
                 rb.position = new Vector2(rb.position.x, -verticalBounds);
@@ -75,7 +74,6 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             rb.position += Vector2.left * speed;
-            transform.rotation = Quaternion.Euler(0, 0, 90);
             if (rb.position.x < -horizontalBounds)
             {
                 rb.position = new Vector2(-horizontalBounds, rb.position.y);
@@ -84,12 +82,11 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rb.position += Vector2.right * speed;
-            transform.rotation = Quaternion.Euler(0, 0, -90);
             if (rb.position.x > horizontalBounds)
             {
                 rb.position = new Vector3(horizontalBounds, rb.position.y);
             }
-        }*/
+        }
 
     }
 
