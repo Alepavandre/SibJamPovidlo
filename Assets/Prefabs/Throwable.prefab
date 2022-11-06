@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c254eb259f1a54f8ea45f236b21a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 13
+  distance: 20
   speedItem: 0.5
   checker: {fileID: 4419551426047514775, guid: 10395a9b6d64ae548bab2a67ee1e135d, type: 3}
 --- !u!50 &-7477455395415605171

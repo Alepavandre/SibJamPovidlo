@@ -17,10 +17,12 @@ public class Unit : MonoBehaviour
     public int State { get; private set; }
 
     public int currentNeed = -1;
-    public Text bubbleNeedText;
+    //public Text bubbleNeedText;
     public Text bubbleCommentText;
     public Image bubbleNeed;
     public Replics replics;
+    public Sprite[] sprites;
+    public SpriteRenderer image;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,18 +37,18 @@ public class Unit : MonoBehaviour
 
     private IEnumerator Request()
     {
-        State = 3;
+        ChangeState(3);
         //bubbleNeedText.text = currentNeed.ToString();
+        DataManager.Instance.IsThisItemFamiliar(currentNeed);
         bubbleNeed.color = Color.white;
         bubbleNeed.sprite = DataManager.Instance.needs[currentNeed].sprite;
-        DataManager.Instance.IsThisItemFamiliar(currentNeed);
         yield return new WaitForSeconds(DataManager.Instance.timerRequest);
         StartCoroutine(nameof(Critical));
     }
 
     private IEnumerator Critical()
     {
-        State = 4;
+        ChangeState(4);
         bubbleCommentText.text = replics.critical;
         yield return new WaitForSeconds(DataManager.Instance.timerCritical);
         Death();
@@ -54,7 +56,7 @@ public class Unit : MonoBehaviour
 
     private void Death()
     {
-        State = 0;
+        ChangeState(0);
         bubbleCommentText.text = "X__X";
         DataManager.Instance.CheckUnitsStates();
     }
@@ -62,6 +64,7 @@ public class Unit : MonoBehaviour
     public void DoRequest()
     {
         currentNeed = Random.Range(0, DataManager.Instance.levels[DataManager.Instance.level].itemsCount);
+        //Debug.Log("current need: " + currentNeed.ToString());
         StartCoroutine(nameof(Request));
     }
 
@@ -83,10 +86,14 @@ public class Unit : MonoBehaviour
     {
         if (State != 0)
         {
-            CleanBubbles();
-            StopRequest();
-            StopCritical();
+            if (newState == 2 || newState == 1)
+            {
+                StopRequest();
+                StopCritical();
+                CleanBubbles();
+            }
             State = newState;
+            image.sprite = sprites[newState];
         }
     }
 
@@ -104,7 +111,7 @@ public class Unit : MonoBehaviour
             StopCoroutine(nameof(ClearText));
             StartCoroutine(nameof(ClearText));
             currentNeed = -1;
-            State = 2;
+            ChangeState(2);
         }
         else
         {

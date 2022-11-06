@@ -26,12 +26,17 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1) && ItemSystem.ItemInstance.isPicked)
+        if (DataManager.Instance.isGameOver)
         {
-            if (Input.GetMouseButtonDown(0))
+            return;
+        }
+        if (Input.GetMouseButton(0) && ItemSystem.ItemInstance.isPicked && DataManager.Instance.canThrow)
+        {
+            /*if (Input.GetMouseButtonDown(0))
             {
                 Throw();
-            }
+            }*/
+            Throw();
         }
     }
 

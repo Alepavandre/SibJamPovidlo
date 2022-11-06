@@ -13,6 +13,14 @@ public struct Need
 }
 
 [System.Serializable]
+public struct Dialog
+{
+    public string replica;
+    public int unit;
+    public float replicDuration;
+}
+
+[System.Serializable]
 public struct LevelStats
 {
     public int itemsCount;
@@ -20,6 +28,7 @@ public struct LevelStats
     public int needsDelay;
     public int timerRequest;
     public int timerCritical;
+    public Dialog[] dialogs;
 }
 
 public class DataManager : MonoBehaviour
@@ -40,7 +49,10 @@ public class DataManager : MonoBehaviour
     public List<int> familiarItems = new List<int>();
     private Transform[] itemsTransforms;
     public GameObject gameoverScreen;
-
+    public bool canThrow = true;
+    public bool roadToGameOver = false;
+    public bool isGameOver = false;
+    public ShakeCamera shaker;
 
     void Awake()
     {
@@ -141,7 +153,18 @@ public class DataManager : MonoBehaviour
         RefreshUnitsList();
         NewNeedsList();
         SpawnNewItems();
+        canThrow = true;
+        shaker.Shake();
         StartCoroutine(nameof(NewNeed));
+    }
+
+    private void NewDialog()
+    {
+        StopCoroutine(nameof(NewNeed));
+        RefreshUnitsStates(1);
+        RefreshUnitsList();
+        ClearItems();
+        canThrow = false;
     }
 
     private void RefreshUnitsStates(int newState)
@@ -162,6 +185,14 @@ public class DataManager : MonoBehaviour
                 time = Time.time - levelTime;
                 //Debug.Log(time);
                 yield return new WaitForSeconds(1f);
+            }
+            NewDialog();
+            int n = levels[level].dialogs.Length;
+            for (int j = 0; j < n; j++)
+            {
+                // отобразить реплику у нужного юнита
+                units[levels[level].dialogs[j].unit].bubbleCommentText.text = levels[level].dialogs[j].replica;
+                yield return new WaitForSeconds(levels[level].dialogs[j].replicDuration);
             }
             NewLevel();
         }
@@ -198,11 +229,21 @@ public class DataManager : MonoBehaviour
         {
             GameOver();
         }
+        timerRequest = levels[level].timerRequest - n;
+        timerCritical = levels[level].timerCritical - n;
+        needsDelay = levels[level].needsDelay - n;
+        if (n > 0)
+        {
+            StopCoroutine(nameof(Timer));
+            roadToGameOver = true;
+        }
     }
 
     private void GameOver()
     {
+        isGameOver = true;
         gameoverScreen.SetActive(true);
+        StopCoroutine(nameof(Timer));
     }
 
     public void Restart()

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     private Color spriteOriginalColor = Color.white;
-    private Color spriteChangeColor = Color.black;
+    private Color spriteChangeColor = Color.yellow;
 
     public int index = 0;
     public bool isInfinity = false;
