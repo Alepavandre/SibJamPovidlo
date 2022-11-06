@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PlayerMover : MonoBehaviour
     private float horizontalBounds = 38f;
     private Rigidbody2D rb;
 
+    [SerializeField] private float rotationSpeed = 100f;
+    
     public GameObject throwable;
 
     // Start is called before the first frame update
@@ -34,9 +38,25 @@ public class PlayerMover : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+        float deltaX = Input.GetAxis("Horizontal");
+        float deltaY = Input.GetAxis("Vertical");
+
+        Vector2 moveDirection = new Vector2(deltaX, deltaY);
+        float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+        moveDirection.Normalize();
+
+        transform.Translate(moveDirection * speed * inputMagnitude * Time.fixedDeltaTime, Space.World);
+        
+        if (moveDirection != Vector2.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        /*if (Input.GetKey(KeyCode.W))
         {
             rb.position += Vector2.up * speed;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             if (rb.position.y > verticalBounds)
             {
                 rb.position = new Vector2(rb.position.x, verticalBounds);
@@ -44,7 +64,9 @@ public class PlayerMover : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
+
             rb.position += Vector2.down * speed;
+            transform.rotation = Quaternion.Euler(0, 0, 180);
             if (rb.position.y < -verticalBounds)
             {
                 rb.position = new Vector2(rb.position.x, -verticalBounds);
@@ -53,6 +75,7 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             rb.position += Vector2.left * speed;
+            transform.rotation = Quaternion.Euler(0, 0, 90);
             if (rb.position.x < -horizontalBounds)
             {
                 rb.position = new Vector2(-horizontalBounds, rb.position.y);
@@ -61,11 +84,12 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rb.position += Vector2.right * speed;
+            transform.rotation = Quaternion.Euler(0, 0, -90);
             if (rb.position.x > horizontalBounds)
             {
                 rb.position = new Vector3(horizontalBounds, rb.position.y);
             }
-        }
+        }*/
 
         /*if (Input.GetMouseButton(1) && ItemSystem.ItemInstance.isPicked)
         {
