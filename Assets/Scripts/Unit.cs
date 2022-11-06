@@ -82,7 +82,7 @@ public class Unit : MonoBehaviour
         CleanBubbleNeed();
     }
 
-    public void ChangeState(int newState)
+    public void ChangeState(int newState, bool clean = true)
     {
         if (State != 0)
         {
@@ -90,7 +90,10 @@ public class Unit : MonoBehaviour
             {
                 StopRequest();
                 StopCritical();
-                CleanBubbles();
+                if (clean)
+                {
+                    CleanBubbles();
+                }
             }
             State = newState;
             image.sprite = sprites[newState];
@@ -111,7 +114,7 @@ public class Unit : MonoBehaviour
             StopCoroutine(nameof(ClearText));
             StartCoroutine(nameof(ClearText));
             currentNeed = -1;
-            ChangeState(2);
+            ChangeState(2, false);
         }
         else
         {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct Need
@@ -53,6 +54,12 @@ public class DataManager : MonoBehaviour
     public bool roadToGameOver = false;
     public bool isGameOver = false;
     public ShakeCamera shaker;
+
+    public Text[] comments;
+
+    public AudioClip ambient;
+    public AudioClip rythm;
+    public AudioSource source;
 
     void Awake()
     {
@@ -155,6 +162,8 @@ public class DataManager : MonoBehaviour
         SpawnNewItems();
         canThrow = true;
         shaker.Shake();
+        source.clip = rythm;
+        source.Play();
         StartCoroutine(nameof(NewNeed));
     }
 
@@ -165,6 +174,8 @@ public class DataManager : MonoBehaviour
         RefreshUnitsList();
         ClearItems();
         canThrow = false;
+        source.clip = ambient;
+        source.Play();
     }
 
     private void RefreshUnitsStates(int newState)
@@ -191,8 +202,10 @@ public class DataManager : MonoBehaviour
             for (int j = 0; j < n; j++)
             {
                 // отобразить реплику у нужного юнита
-                units[levels[level].dialogs[j].unit].bubbleCommentText.text = levels[level].dialogs[j].replica;
+                //units[levels[level].dialogs[j].unit].bubbleCommentText.text = levels[level].dialogs[j].replica;
+                comments[levels[level].dialogs[j].unit].text = levels[level].dialogs[j].replica;
                 yield return new WaitForSeconds(levels[level].dialogs[j].replicDuration);
+                comments[levels[level].dialogs[j].unit].text = "";
             }
             NewLevel();
         }
@@ -229,11 +242,11 @@ public class DataManager : MonoBehaviour
         {
             GameOver();
         }
-        timerRequest = levels[level].timerRequest - n;
-        timerCritical = levels[level].timerCritical - n;
-        needsDelay = levels[level].needsDelay - n;
         if (n > 0)
         {
+            timerRequest = 1;
+            timerCritical = 1;
+            needsDelay = 1;
             StopCoroutine(nameof(Timer));
             roadToGameOver = true;
         }
