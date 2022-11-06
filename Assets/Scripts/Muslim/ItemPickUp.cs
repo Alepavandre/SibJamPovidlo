@@ -8,7 +8,6 @@ public class ItemPickUp : MonoBehaviour
     public int index = 0;
     public bool isInfinity = false;
 
-
     private void Start()
     {
         //spriteOriginalColor = gameObject.GetComponent<SpriteRenderer>().color;

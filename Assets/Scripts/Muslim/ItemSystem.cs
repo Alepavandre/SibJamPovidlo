@@ -19,6 +19,7 @@ public class ItemSystem : MonoBehaviour
     public GameObject player;
 
     private float _distance = 100;
+    public float step = 2f;
 
     [NonSerialized] public bool isEntered = false;
     [NonSerialized] public bool isPicked = false;
@@ -105,10 +106,12 @@ public class ItemSystem : MonoBehaviour
 
     private void SetPicked()
     {
+        if (minItem.transform.childCount != 0)
+        {
+            Destroy(minItem.transform.GetChild(0).gameObject);
+        }
         if (minItem.isInfinity)
         {
-            //ItemPickUp newItem = Instantiate(minItem, player.transform.position, Quaternion.identity, player.transform);
-            //newItem.isInfinity = false;
             minItem = Instantiate(minItem, player.transform.position, Quaternion.identity, player.transform);
             minItem.isInfinity = false;
         }
@@ -116,6 +119,10 @@ public class ItemSystem : MonoBehaviour
         {
             minItem.transform.position = player.transform.position;
             minItem.transform.SetParent(player.transform);
+        }
+        if (minItem.transform.childCount != 0)
+        {
+            Destroy(minItem.transform.GetChild(0).gameObject);
         }
         isPicked = true;
     }

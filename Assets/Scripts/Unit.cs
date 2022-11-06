@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+[System.Serializable]
+public struct Replics
+{
+    public string critical;
+    public string thanks;
+    public string wrongItem;
+}
+
 public class Unit : MonoBehaviour
 {
     public int State { get; private set; }
 
-    //public int timerRequest = 10;
-    //public int timerCritical = 15;
     public int currentNeed = -1;
-
     public Text bubbleNeedText;
     public Text bubbleCommentText;
+    public Image bubbleNeed;
+    public Replics replics;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +36,10 @@ public class Unit : MonoBehaviour
     private IEnumerator Request()
     {
         State = 3;
-        bubbleNeedText.text = currentNeed.ToString();
+        //bubbleNeedText.text = currentNeed.ToString();
+        bubbleNeed.color = Color.white;
+        bubbleNeed.sprite = DataManager.Instance.needs[currentNeed].sprite;
+        DataManager.Instance.IsThisItemFamiliar(currentNeed);
         yield return new WaitForSeconds(DataManager.Instance.timerRequest);
         StartCoroutine(nameof(Critical));
     }
@@ -36,7 +47,7 @@ public class Unit : MonoBehaviour
     private IEnumerator Critical()
     {
         State = 4;
-        bubbleNeedText.text = currentNeed.ToString() + ", СРОЧНА";
+        bubbleCommentText.text = replics.critical;
         yield return new WaitForSeconds(DataManager.Instance.timerCritical);
         Death();
     }
@@ -45,42 +56,51 @@ public class Unit : MonoBehaviour
     {
         State = 0;
         bubbleCommentText.text = "X__X";
-        //Debug.Log(name + " died");
+        DataManager.Instance.CheckUnitsStates();
     }
 
     public void DoRequest()
     {
-        currentNeed = Random.Range(0, DataManager.Instance.needs);
+        currentNeed = Random.Range(0, DataManager.Instance.levels[DataManager.Instance.level].itemsCount);
         StartCoroutine(nameof(Request));
     }
 
     public void StopRequest()
     {
         StopCoroutine(nameof(Request));
-        bubbleNeedText.text = "";
+        //bubbleNeedText.text = "";
+        CleanBubbleNeed();
     }
 
     public void StopCritical()
     {
         StopCoroutine(nameof(Critical));
-        bubbleNeedText.text = "";
+        //bubbleNeedText.text = "";
+        CleanBubbleNeed();
     }
 
     public void ChangeState(int newState)
     {
         if (State != 0)
         {
+            CleanBubbles();
+            StopRequest();
+            StopCritical();
             State = newState;
         }
     }
 
     public void GetItem(int item)
     {
+        if (State == 0)
+        {
+            return;
+        }
         if (item == currentNeed)
         {
             StopRequest();
             StopCritical();
-            bubbleCommentText.text = "Так то лучше!";
+            bubbleCommentText.text = replics.thanks;
             StopCoroutine(nameof(ClearText));
             StartCoroutine(nameof(ClearText));
             currentNeed = -1;
@@ -89,15 +109,26 @@ public class Unit : MonoBehaviour
         else
         {
             // Comment about wrong item
-            bubbleCommentText.text = "Это не то, дурында!";
+            bubbleCommentText.text = replics.wrongItem;
             StartCoroutine(nameof(ClearText));
-            Debug.Log("Wrong Item!");
         }
     }
 
     private IEnumerator ClearText()
     {
         yield return new WaitForSeconds(3f);
+        bubbleCommentText.text = "";
+    }
+
+    private void CleanBubbleNeed()
+    {
+        bubbleNeed.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    public void CleanBubbles()
+    {
+        currentNeed = -1;
+        CleanBubbleNeed();
         bubbleCommentText.text = "";
     }
 }
