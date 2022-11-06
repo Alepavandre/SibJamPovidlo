@@ -49,8 +49,8 @@ public class ThrowableItem : MonoBehaviour
         GameObject gm = Instantiate(checker, new Vector3(endPos.x, endPos.y, 0), Quaternion.identity);
         Rigidbody2D rbGm = gm.GetComponent<Rigidbody2D>();
 
-        Debug.Log($"endpos {endPos}");
-        Debug.Log($"1{rbGm.position}");
+        //Debug.Log($"endpos {endPos}");
+        //Debug.Log($"1{rbGm.position}");
         
         float deviation = 30f;
         float dis = distance + deviation;
@@ -61,14 +61,14 @@ public class ThrowableItem : MonoBehaviour
 
             if (hit.collider == null)
             {
-                Debug.Log($"null {rbGm.position}");
+                //Debug.Log($"null {rbGm.position}");
                 Destroy(gm);
                 return rbGm.position;
             }
             else if (hit.collider.CompareTag("Walls") || hit.collider.CompareTag("Furnit"))
             {
                 rbGm.position = Vector2.MoveTowards(rbGm.position, Vector2.zero, ItemSystem.ItemInstance.step);
-                Debug.Log($"3{rbGm.position}");
+                //Debug.Log($"3{rbGm.position}");
             }
             /*else if (hit.collider.CompareTag("Furnit"))
             {

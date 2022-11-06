@@ -67,13 +67,6 @@ public class PlayerMover : MonoBehaviour
             }
         }
 
-        /*if (Input.GetMouseButton(1) && ItemSystem.ItemInstance.isPicked)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Throw();
-            }
-        }*/
     }
 
     private void Throw()
